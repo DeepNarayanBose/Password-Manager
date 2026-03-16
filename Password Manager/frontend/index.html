@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULT_SYS v2.0 | Secure Access Terminal</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">VAULT_SYS v2.0 - SECURE ACCESS TERMINAL</span>
+            <span class="terminal-status">● ENCRYPTED</span>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="ascii-art">
+                <pre>
+    ██╗   ██╗ █████╗ ██╗   ██╗██╗  ████████╗
+    ██║   ██║██╔══██╗██║   ██║██║  ╚══██╔══╝
+    ██║   ██║███████║██║   ██║██║     ██║   
+    ╚██╗ ██╔╝██╔══██║██║   ██║██║     ██║   
+     ╚████╔╝ ██║  ██║╚██████╔╝███████╗██║   
+      ╚═══╝  ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝   
+                                              
+        [ENCRYPTED PASSWORD MANAGER]
+                </pre>
+            </div>
+
+            <div class="welcome-box">
+                <h1 class="glitch" data-text="INITIALIZE SYSTEM">INITIALIZE SYSTEM</h1>
+                <p class="terminal-text">
+                    > Connecting to secure vault...<br>
+                    > AES-256 Encryption Active<br>
+                    > Zero-Knowledge Architecture Enabled<br>
+                    > Status: <span class="status-green">OPERATIONAL</span>
+                </p>
+                
+                <div class="action-buttons">
+                    <a href="/login" class="btn btn-primary">
+                        <span class="btn-icon">►</span> ACCESS VAULT
+                    </a>
+                    <a href="/register" class="btn btn-secondary">
+                        <span class="btn-icon">+</span> CREATE NEW ACCOUNT
+                    </a>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon">🔐</div>
+                    <h3>AES-256 ENCRYPTION</h3>
+                    <p>Military-grade encryption protects your data</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>ZERO-KNOWLEDGE</h3>
+                    <p>Your master password never leaves your device</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">⚡</div>
+                    <h3>OFFLINE CAPABLE</h3>
+                    <p>Access your vault without internet connection</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <span>System Time: <span id="system-time"></span></span>
+            <span>Security Level: <span class="status-green">MAXIMUM</span></span>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        // Update system time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('system-time').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>

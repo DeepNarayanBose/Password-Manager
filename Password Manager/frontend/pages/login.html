@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULT_SYS | Authentication Required</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">VAULT_SYS - AUTHENTICATION TERMINAL</span>
+            <span class="terminal-status">● AWAITING CREDENTIALS</span>
+        </div>
+        
+        <div class="content-wrapper centered">
+            <div class="auth-box">
+                <div class="terminal-prompt">
+                    <span class="prompt-symbol">root@vault:~#</span> authenticate_user
+                </div>
+                
+                <h2 class="form-title">ENTER CREDENTIALS</h2>
+                
+                <form id="loginForm" class="terminal-form">
+                    <div class="form-group">
+                        <label for="username">
+                            <span class="input-prompt">></span> USERNAME:
+                        </label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="terminal-input" 
+                            placeholder="Enter username..."
+                            required
+                            autocomplete="username"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="input-prompt">></span> MASTER PASSWORD:
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="terminal-input" 
+                            placeholder="Enter master password..."
+                            required
+                            autocomplete="current-password"
+                        >
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-icon">►</span> AUTHENTICATE
+                        </button>
+                        <a href="/" class="btn btn-secondary">
+                            <span class="btn-icon">←</span> RETURN
+                        </a>
+                    </div>
+                </form>
+
+                <div class="auth-footer">
+                    <p class="terminal-text">
+                        > New user? <a href="/register" class="link-green">Initialize new vault</a>
+                    </p>
+                </div>
+
+                <div id="loginStatus" class="status-message" style="display: none;"></div>
+            </div>
+
+            <div class="security-notice">
+                <p class="notice-text">
+                    <span class="warning-icon">⚠</span> SECURITY NOTICE:<br>
+                    Your master password is never transmitted or stored on our servers.<br>
+                    Make sure you're on a secure connection.
+                </p>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <span>Encryption: AES-256-GCM</span>
+            <span>Session: <span class="status-red">NOT AUTHENTICATED</span></span>
+        </div>
+    </div>
+
+    <script src="/assets/app.js"></script>
+</body>
+</html>

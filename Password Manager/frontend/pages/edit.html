@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULT_SYS | Edit Entry</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">VAULT_SYS - EDIT ENTRY</span>
+            <span class="terminal-status">● AUTHENTICATED</span>
+        </div>
+        
+        <div class="content-wrapper centered">
+            <div class="form-box">
+                <div class="terminal-prompt">
+                    <span class="prompt-symbol">root@vault:~#</span> edit_entry --id=<span id="entryIdDisplay">####</span>
+                </div>
+                
+                <h2 class="form-title">MODIFY VAULT ENTRY</h2>
+                
+                <form id="editEntryForm" class="terminal-form">
+                    <input type="hidden" id="entryId" name="entryId">
+                    
+                    <div class="form-group">
+                        <label for="siteName">
+                            <span class="input-prompt">></span> SITE/SERVICE NAME: <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="siteName" 
+                            name="siteName" 
+                            class="terminal-input" 
+                            placeholder="e.g., GitHub, Gmail, Bank Account..."
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">
+                            <span class="input-prompt">></span> USERNAME/EMAIL: <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="terminal-input" 
+                            placeholder="username or email@example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="input-prompt">></span> PASSWORD: <span class="required">*</span>
+                        </label>
+                        <div class="password-input-group">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                class="terminal-input" 
+                                placeholder="Enter or generate password..."
+                                required
+                            >
+                            <button type="button" id="togglePasswordVisibility" class="btn-icon-only" title="Show/Hide">
+                                👁
+                            </button>
+                        </div>
+                        <div class="password-actions">
+                            <button type="button" id="generatePassword" class="btn btn-small btn-secondary">
+                                <span class="btn-icon">⚡</span> GENERATE NEW PASSWORD
+                            </button>
+                        </div>
+                        <div id="passwordStrength" class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                            <small id="strengthText">Password strength: <span>UNKNOWN</span></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="url">
+                            <span class="input-prompt">></span> WEBSITE URL:
+                        </label>
+                        <input 
+                            type="url" 
+                            id="url" 
+                            name="url" 
+                            class="terminal-input" 
+                            placeholder="https://example.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">
+                            <span class="input-prompt">></span> CATEGORY:
+                        </label>
+                        <select id="category" name="category" class="terminal-input">
+                            <option value="general">General</option>
+                            <option value="social">Social Media</option>
+                            <option value="email">Email</option>
+                            <option value="banking">Banking</option>
+                            <option value="work">Work</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">
+                            <span class="input-prompt">></span> NOTES:
+                        </label>
+                        <textarea 
+                            id="notes" 
+                            name="notes" 
+                            class="terminal-input terminal-textarea" 
+                            rows="4"
+                            placeholder="Additional notes, security questions, etc..."
+                        ></textarea>
+                    </div>
+
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠</span>
+                        <strong>WARNING:</strong> Changes will be saved immediately and cannot be undone.
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-icon">💾</span> UPDATE ENTRY
+                        </button>
+                        <button type="button" id="deleteEntry" class="btn btn-danger">
+                            <span class="btn-icon">🗑</span> DELETE ENTRY
+                        </button>
+                        <a href="/vault" class="btn btn-secondary">
+                            <span class="btn-icon">←</span> CANCEL
+                        </a>
+                    </div>
+                </form>
+
+                <div id="editStatus" class="status-message" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <span>Last Modified: <span id="lastModified">--/--/----</span></span>
+            <span>Entry ID: <span id="entryIdFooter">####</span></span>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>CONFIRM DELETION</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="warning-box" style="margin: 0;">
+                    <span class="warning-icon">⚠</span>
+                    <strong>CRITICAL WARNING:</strong><br>
+                    This action cannot be undone. The entry will be permanently deleted from your vault.
+                </div>
+                <p class="terminal-text" style="margin-top: 20px;">
+                    Are you sure you want to delete this entry?<br>
+                    <strong id="deleteEntryName"></strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmDelete" class="btn btn-danger">
+                    <span class="btn-icon">✓</span> YES, DELETE
+                </button>
+                <button class="btn btn-secondary modal-close-btn">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Generator Modal -->
+    <div id="generatorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>PASSWORD GENERATOR</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="generator-options">
+                    <div class="form-group">
+                        <label>LENGTH: <span id="lengthValue">16</span></label>
+                        <input type="range" id="passwordLength" min="8" max="64" value="16" class="slider">
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeUppercase" checked>
+                            <span>Uppercase (A-Z)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeLowercase" checked>
+                            <span>Lowercase (a-z)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeNumbers" checked>
+                            <span>Numbers (0-9)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeSymbols" checked>
+                            <span>Symbols (!@#$%^&*)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="generated-password-box">
+                    <input type="text" id="generatedPassword" class="terminal-input" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="regenerateBtn" class="btn btn-secondary">
+                    <span class="btn-icon">🔄</span> REGENERATE
+                </button>
+                <button id="usePasswordBtn" class="btn btn-primary">
+                    <span class="btn-icon">✓</span> USE THIS PASSWORD
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/app.js"></script>
+</body>
+</html>

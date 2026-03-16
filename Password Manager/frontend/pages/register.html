@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULT_SYS | Initialize New Vault</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">VAULT_SYS - VAULT INITIALIZATION</span>
+            <span class="terminal-status">● CREATING NEW VAULT</span>
+        </div>
+        
+        <div class="content-wrapper centered">
+            <div class="auth-box">
+                <div class="terminal-prompt">
+                    <span class="prompt-symbol">root@vault:~#</span> create_vault --new-user
+                </div>
+                
+                <h2 class="form-title">INITIALIZE NEW VAULT</h2>
+                
+                <form id="registerForm" class="terminal-form">
+                    <div class="form-group">
+                        <label for="username">
+                            <span class="input-prompt">></span> USERNAME:
+                        </label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            class="terminal-input" 
+                            placeholder="Choose username..."
+                            required
+                            autocomplete="username"
+                            minlength="3"
+                        >
+                        <small class="input-hint">Min. 3 characters | Alphanumeric only</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="input-prompt">></span> EMAIL ADDRESS:
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="terminal-input" 
+                            placeholder="your.email@domain.com"
+                            required
+                            autocomplete="email"
+                        >
+                        <small class="input-hint">Recovery email (optional but recommended)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <span class="input-prompt">></span> MASTER PASSWORD:
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            class="terminal-input" 
+                            placeholder="Create master password..."
+                            required
+                            autocomplete="new-password"
+                            minlength="8"
+                        >
+                        <div id="passwordStrength" class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strengthFill"></div>
+                            </div>
+                            <small id="strengthText">Password strength: <span>UNKNOWN</span></small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            <span class="input-prompt">></span> CONFIRM PASSWORD:
+                        </label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            class="terminal-input" 
+                            placeholder="Re-enter master password..."
+                            required
+                            autocomplete="new-password"
+                        >
+                    </div>
+
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠</span>
+                        <strong>CRITICAL WARNING:</strong><br>
+                        Your master password cannot be recovered. If you forget it, all vault data will be permanently lost. Store it securely.
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-icon">+</span> CREATE VAULT
+                        </button>
+                        <a href="/" class="btn btn-secondary">
+                            <span class="btn-icon">←</span> CANCEL
+                        </a>
+                    </div>
+                </form>
+
+                <div class="auth-footer">
+                    <p class="terminal-text">
+                        > Already have an account? <a href="/login" class="link-green">Access your vault</a>
+                    </p>
+                </div>
+
+                <div id="registerStatus" class="status-message" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <span>Encryption: AES-256-GCM</span>
+            <span>Zero-Knowledge: <span class="status-green">ENABLED</span></span>
+        </div>
+    </div>
+
+    <script src="/assets/app.js"></script>
+</body>
+</html>

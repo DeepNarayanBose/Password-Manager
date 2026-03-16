@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULT_SYS | Secure Vault</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">VAULT_SYS - ENCRYPTED VAULT ACCESS</span>
+            <span class="terminal-status">● AUTHENTICATED</span>
+        </div>
+        
+        <nav class="vault-nav">
+            <div class="nav-left">
+                <span class="nav-user">
+                    <span class="prompt-symbol">></span> User: <span id="currentUser">user@vault</span>
+                </span>
+            </div>
+            <div class="nav-right">
+                <a href="/add" class="btn btn-small btn-primary">
+                    <span class="btn-icon">+</span> ADD ENTRY
+                </a>
+                <a href="/settings" class="btn btn-small btn-secondary">
+                    <span class="btn-icon">⚙</span> SETTINGS
+                </a>
+                <a href="#" id="logoutBtn" class="btn btn-small btn-danger">
+                    <span class="btn-icon">⏻</span> LOGOUT
+                </a>
+            </div>
+        </nav>
+        
+        <div class="content-wrapper">
+            <div class="vault-header">
+                <h1 class="page-title">
+                    <span class="prompt-symbol">></span> VAULT ENTRIES
+                </h1>
+                <div class="vault-stats">
+                    <span class="stat-item">Total Entries: <span id="totalEntries" class="status-green">0</span></span>
+                    <span class="stat-item">Last Access: <span id="lastAccess">--:--:--</span></span>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="terminal-input" 
+                    placeholder="> Search vault entries..."
+                >
+            </div>
+
+            <div id="vaultEntries" class="vault-grid">
+                <!-- Entries will be dynamically loaded here -->
+            </div>
+
+            <div id="emptyVault" class="empty-state" style="display: none;">
+                <div class="ascii-art-small">
+                    <pre>
+    ╔═══════════════════════╗
+    ║   VAULT IS EMPTY      ║
+    ║   [NO ENTRIES FOUND]  ║
+    ╚═══════════════════════╝
+                    </pre>
+                </div>
+                <p class="terminal-text">
+                    > No password entries found in your vault.<br>
+                    > Click "ADD ENTRY" to store your first credential.
+                </p>
+                <a href="/add" class="btn btn-primary">
+                    <span class="btn-icon">+</span> ADD FIRST ENTRY
+                </a>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <span>Vault Status: <span class="status-green">DECRYPTED</span></span>
+            <span>Entries Loaded: <span id="entriesCount">0</span></span>
+            <span>Auto-lock: <span id="autoLockTimer">10:00</span></span>
+        </div>
+    </div>
+
+    <!-- Password View Modal -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>VIEW ENTRY</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="entry-detail">
+                    <label>SITE/SERVICE:</label>
+                    <p id="modalSite" class="detail-value"></p>
+                </div>
+                <div class="entry-detail">
+                    <label>USERNAME/EMAIL:</label>
+                    <p id="modalUsername" class="detail-value"></p>
+                </div>
+                <div class="entry-detail">
+                    <label>PASSWORD:</label>
+                    <div class="password-reveal">
+                        <p id="modalPassword" class="detail-value password-hidden">••••••••••••</p>
+                        <button id="togglePassword" class="btn btn-small btn-secondary">
+                            <span class="btn-icon">👁</span> REVEAL
+                        </button>
+                    </div>
+                </div>
+                <div class="entry-detail">
+                    <label>URL:</label>
+                    <p id="modalUrl" class="detail-value"></p>
+                </div>
+                <div class="entry-detail">
+                    <label>NOTES:</label>
+                    <p id="modalNotes" class="detail-value"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="copyPasswordBtn" class="btn btn-primary">
+                    <span class="btn-icon">📋</span> COPY PASSWORD
+                </button>
+                <button class="btn btn-secondary modal-close-btn">CLOSE</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/app.js"></script>
+</body>
+</html>

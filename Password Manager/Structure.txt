@@ -1,0 +1,27 @@
+password-manager/
+│
+├── frontend/
+│   ├── index.html
+│   ├── pages/
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   ├── vault.html
+│   │   ├── add.html
+│   │   ├── edit.html
+│   │   └── settings.html
+│   │
+│   ├── assets/
+│   │   ├── style.css     # ONE CSS
+│   │   └── app.js        # ONE JS
+│   │
+│   └── icons/
+│
+├── backend/
+│   ├── app.py            # ✅ EVERYTHING backend
+│   └── requirements.txt
+│
+├── database/
+│   └── password_manager.db
+│
+├── README.md
+└── .gitignore

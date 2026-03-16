@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAULT_SYS | System Settings</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <span class="terminal-title">VAULT_SYS - SYSTEM CONFIGURATION</span>
+            <span class="terminal-status">● AUTHENTICATED</span>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="settings-header">
+                <h1 class="page-title">
+                    <span class="prompt-symbol">></span> SYSTEM SETTINGS
+                </h1>
+                <a href="/vault" class="btn btn-small btn-secondary">
+                    <span class="btn-icon">←</span> BACK TO VAULT
+                </a>
+            </div>
+
+            <div class="settings-grid">
+                <!-- Account Settings -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>ACCOUNT CONFIGURATION</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>USERNAME</label>
+                                <p class="setting-value" id="displayUsername">user@vault</p>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>EMAIL</label>
+                                <p class="setting-value" id="displayEmail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c494f594e7c59445d514c5059125f5351">[email&#160;protected]</a></p>
+                            </div>
+                            <button class="btn btn-small btn-secondary" id="updateEmail">UPDATE</button>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>MASTER PASSWORD</label>
+                                <p class="setting-description">Change your vault master password</p>
+                            </div>
+                            <button class="btn btn-small btn-secondary" id="changeMasterPassword">CHANGE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Settings -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>SECURITY CONFIGURATION</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>AUTO-LOCK TIMEOUT</label>
+                                <p class="setting-description">Automatically lock vault after inactivity</p>
+                            </div>
+                            <select id="autoLockTimeout" class="terminal-input settings-select">
+                                <option value="5">5 minutes</option>
+                                <option value="10" selected>10 minutes</option>
+                                <option value="15">15 minutes</option>
+                                <option value="30">30 minutes</option>
+                                <option value="60">1 hour</option>
+                                <option value="0">Never</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>TWO-FACTOR AUTHENTICATION</label>
+                                <p class="setting-description">Add extra layer of security (Coming Soon)</p>
+                            </div>
+                            <button class="btn btn-small btn-secondary" disabled>ENABLE</button>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>SESSION TIMEOUT</label>
+                                <p class="setting-description">Time before automatic logout</p>
+                            </div>
+                            <select id="sessionTimeout" class="terminal-input settings-select">
+                                <option value="30">30 minutes</option>
+                                <option value="60" selected>1 hour</option>
+                                <option value="120">2 hours</option>
+                                <option value="240">4 hours</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vault Management -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>VAULT MANAGEMENT</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>EXPORT VAULT DATA</label>
+                                <p class="setting-description">Download encrypted backup of your vault</p>
+                            </div>
+                            <button class="btn btn-small btn-secondary" id="exportVault">
+                                <span class="btn-icon">📥</span> EXPORT
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>IMPORT VAULT DATA</label>
+                                <p class="setting-description">Import passwords from backup file</p>
+                            </div>
+                            <button class="btn btn-small btn-secondary" id="importVault">
+                                <span class="btn-icon">📤</span> IMPORT
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>VAULT STATISTICS</label>
+                                <p class="setting-description">Total entries: <span id="totalEntries" class="status-green">0</span> | Created: <span id="vaultCreated">--/--/----</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appearance Settings -->
+                <div class="settings-section">
+                    <div class="section-header">
+                        <h2>INTERFACE CONFIGURATION</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>THEME</label>
+                                <p class="setting-description">Visual theme (more themes coming soon)</p>
+                            </div>
+                            <select id="theme" class="terminal-input settings-select">
+                                <option value="hacker-green" selected>Hacker Green</option>
+                                <option value="dark-blue" disabled>Dark Blue (Soon)</option>
+                                <option value="terminal-amber" disabled>Terminal Amber (Soon)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>SCREEN EFFECT</label>
+                                <p class="setting-description">CRT scanline effect</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="scanlineEffect" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="settings-section danger-section">
+                    <div class="section-header">
+                        <h2>⚠ DANGER ZONE</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>CLEAR ALL VAULT DATA</label>
+                                <p class="setting-description">Permanently delete all passwords and entries</p>
+                            </div>
+                            <button class="btn btn-small btn-danger" id="clearVault">
+                                <span class="btn-icon">🗑</span> CLEAR VAULT
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <label>DELETE ACCOUNT</label>
+                                <p class="setting-description">Permanently delete your account and all data</p>
+                            </div>
+                            <button class="btn btn-small btn-danger" id="deleteAccount">
+                                <span class="btn-icon">⚠</span> DELETE ACCOUNT
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-footer">
+                <button id="saveSettings" class="btn btn-primary">
+                    <span class="btn-icon">💾</span> SAVE CHANGES
+                </button>
+                <button id="resetSettings" class="btn btn-secondary">
+                    <span class="btn-icon">↺</span> RESET TO DEFAULTS
+                </button>
+            </div>
+        </div>
+
+        <div class="terminal-footer">
+            <span>Version: v2.0.1</span>
+            <span>Last Backup: <span id="lastBackup">Never</span></span>
+        </div>
+    </div>
+
+    <!-- Change Master Password Modal -->
+    <div id="changeMasterPasswordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>CHANGE MASTER PASSWORD</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="changeMasterPasswordForm" class="terminal-form">
+                    <div class="form-group">
+                        <label>CURRENT PASSWORD:</label>
+                        <input type="password" id="currentPassword" class="terminal-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label>NEW PASSWORD:</label>
+                        <input type="password" id="newPassword" class="terminal-input" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <label>CONFIRM NEW PASSWORD:</label>
+                        <input type="password" id="confirmNewPassword" class="terminal-input" required>
+                    </div>
+                    <div class="warning-box">
+                        <span class="warning-icon">⚠</span>
+                        All vault data will be re-encrypted with the new password.
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" form="changeMasterPasswordForm" class="btn btn-primary">UPDATE PASSWORD</button>
+                <button class="btn btn-secondary modal-close-btn">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear Vault Confirmation Modal -->
+    <div id="clearVaultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>CONFIRM VAULT WIPE</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="warning-box" style="margin: 0;">
+                    <span class="warning-icon">⚠</span>
+                    <strong>CRITICAL WARNING:</strong><br>
+                    This will permanently delete ALL passwords and entries in your vault. This action CANNOT be undone.
+                </div>
+                <p class="terminal-text" style="margin-top: 20px;">
+                    Type <strong>DELETE ALL</strong> to confirm:
+                </p>
+                <input type="text" id="clearVaultConfirm" class="terminal-input" placeholder="Type DELETE ALL">
+            </div>
+            <div class="modal-footer">
+                <button id="confirmClearVault" class="btn btn-danger">WIPE VAULT</button>
+                <button class="btn btn-secondary modal-close-btn">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="settingsStat
